@@ -10,6 +10,7 @@ node server.js
 ```
 
 The portal will be available at `http://localhost:3000`. Customize the port with the `PORT` environment variable if needed.
+If embedding the portal from another domain, adjust the CORS origin in `server.js`.
 
 ## Deployment Instructions
 
