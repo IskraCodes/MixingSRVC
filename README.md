@@ -26,7 +26,7 @@ If embedding the portal from another domain, adjust the CORS origin in `server.j
   stored in `uploads/` and `/latest-upload` returns info about the most recent
   upload.
 
-Feel free to customize the HTML/CSS or the server logic to integrate emailing or database storage.
+The frontend now uses [Bootstrap](https://getbootstrap.com/) for modern styling. Feel free to customize the HTML/CSS or the server logic to integrate emailing or database storage.
 
 ## Converting `index.html` to a Shopify snippet
 
