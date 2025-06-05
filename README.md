@@ -22,6 +22,9 @@ If embedding the portal from another domain, adjust the CORS origin in `server.j
 
 - `server.js` – Express server handling form submissions.
 - `public/index.html` – Frontend form that sends POST requests to `/submit`.
+- `public/upload.html` – Simple page for uploading a new file version. Files are
+  stored in `uploads/` and `/latest-upload` returns info about the most recent
+  upload.
 
 Feel free to customize the HTML/CSS or the server logic to integrate emailing or database storage.
 

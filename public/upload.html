@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>File Upload</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; }
+  form { max-width: 500px; margin: 0 auto; }
+  label { display: block; margin-top: 10px; }
+  input[type="file"] { margin-top: 4px; }
+  button { margin-top: 10px; padding: 10px 20px; }
+</style>
+</head>
+<body>
+<h1>Upload New Version</h1>
+<form id="upload-form">
+  <label>Choose File
+    <input type="file" name="file" required>
+  </label>
+  <button type="submit">Upload</button>
+</form>
+<p id="upload-status"></p>
+<p id="last-upload"></p>
+<script>
+async function fetchLatest() {
+  const res = await fetch('/latest-upload');
+  const data = await res.json();
+  const p = document.getElementById('last-upload');
+  if (data.date) {
+    p.textContent = `Last upload: ${new Date(data.date).toLocaleString()} (${data.originalName})`;
+  } else {
+    p.textContent = 'No uploads yet.';
+  }
+}
+fetchLatest();
+const form = document.getElementById('upload-form');
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const formData = new FormData(form);
+  const res = await fetch('/upload', {
+    method: 'POST',
+    body: formData
+  });
+  const result = await res.json();
+  const status = document.getElementById('upload-status');
+  if (result.success) {
+    status.textContent = 'File uploaded!';
+    await fetchLatest();
+  } else {
+    status.textContent = result.error || 'Upload failed.';
+  }
+});
+</script>
+</body>
+</html>
